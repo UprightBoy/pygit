@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import re
-from html.parser import HTMLParser
 
 '''
 def html_body(file):
@@ -50,7 +48,8 @@ if __name__ == '__main__':
     print(html_body('D:\pygit\www\static\littleProject\htmlAnalysis/testHTML.html'))
 '''
 
-import requests, re
+import requests
+import re
 from bs4 import BeautifulSoup
 
 url = 'http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958' \
@@ -61,6 +60,23 @@ print(r[0])
 
 print('-----------------------------------------------------------------------------------')
 soup = BeautifulSoup(data.text, 'html.parser')
-print(soup.body.text)
+print(soup.get_text())
+
+r = requests.get(url='http://dict.baidu.com/s', params={'wd': 'python'})
+# 带参数的GET请求
+print(r.url)
+print(r.text)
+
+
+def html_body(file):
+    with open(file, encoding='UTF-8') as f:
+        Soup = BeautifulSoup(f.read(), 'html.parser')
+        return Soup.get_text()
+
+if __name__ == '__main__':
+    print(html_body('D:\pygit\www\static\littleProject\htmlAnalysis/testHTML.html'))
+
+
+
 
 
